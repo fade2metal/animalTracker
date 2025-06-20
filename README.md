@@ -66,7 +66,9 @@ Die serielle Konsole muss deaktiviert und UART aktiviert sein:
 
 ```bash
 sudo raspi-config
+```
 # → Schnittstellenoptionen → Seriell → Login-Shell: Nein, Serielle Schnittstelle: Ja
+
 🐳 Docker Setup
 
 Voraussetzungen
@@ -76,13 +78,16 @@ Docker & Docker Compose
 serial0 aktiv & verfügbar
 
 Dockerfile (Ausschnitt)
+```dockerfile
 FROM python:3.11-slim
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
 CMD ["python", "AnimalTracker.py"]
+```
 
 docker-compose.yml (Beispiel)
+```yml
 version: '3'
 services:
   animaltracker:
@@ -94,10 +99,13 @@ services:
       - "/dev/serial0:/dev/serial0"
     volumes:
       - ./data:/app/data
+```
 
 Start:
-
+```bash
 docker-compose up --build -d
+```
+
 🛠 Konfiguration
 
 Die Konfigurationsdaten (Mailserver, Tagnamen etc.) sind über die NiceGUI-Weboberfläche einstellbar. Änderungen werden automatisch in der SQLite-Datenbank gespeichert.
