@@ -1,0 +1,2 @@
+nicegui==2.19.0
+pyserial==3.4
