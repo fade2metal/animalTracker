@@ -245,7 +245,7 @@ def loadMailConfig():
 
 def loadLogging():
     try:
-        data = db.read('SELECT "_rowid_",* FROM "main"."tagLogging" LIMIT 1000 ORDER BY timestamp DESC OFFSET 0;')
+        data = db.read('SELECT "_rowid_",* FROM "main"."tagLogging" ORDER BY timestamp DESC LIMIT 1000;')
         jsonList = []
         for conf in data:
             jsonObject = {}
