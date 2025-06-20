@@ -24,7 +24,7 @@ def clone_or_update_repo():
         run(["git", "-C", str(APP_DIR), "pull"], check=True)
     else:
         logger.info("Cloning repo...")
-        run(["git", "clone", REPO_URL, str(APP_DIR)], check=True)
+        run(["git", "clone", REPO_URL + str(APP_DIR) + ".git"], check=True)
 
 def start_app():
     '''
