@@ -10,6 +10,7 @@ from email.message import EmailMessage
 import ssl
 from RFID import RFID
 from time import sleep
+from pytz import timezone
 import asyncio
 import logging
 
@@ -395,7 +396,7 @@ def update_ui():
     while not dataQueue.empty():
         data = dataQueue.get()
         tag = (loadItem(data))
-        timestamp = datetime.now()
+        timestamp = datetime.now(timezone("Europe/Berlin"))
         logToDb(tag["id"] if tag["id"] else data, tag["name"], timestamp.strftime("%d.%m.%Y %H:%M:%S"))
         loggingGrid.options['rowData'] = loadLogging()
         loggingGrid.options['sortModel'] = [{'colId': 'timestamp', 'sort': 'desc'}]
